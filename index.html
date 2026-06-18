@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopta y Cambia una Vida - Postulación</title>
+    <style>
+        /* Nueva paleta de colores de la campaña */
+        :root {
+            --lila-principal: #bb9bf1;
+            --lila-claro: #f3ebf6;
+            --cian-brillante: #0dc8e2;
+            --blanco: #ffffff;
+            --texto-oscuro: #333333;
+            --gris-claro: #f9f9f9;
+        }
+
+       body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--texto-oscuro);
+            background-color: var(--blanco);
+            text-align: center;
+            position: relative;
+        }
+
+        /* CAPA DEL PATRÓN DE FONDO CON OPACIDAD AL 50% */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('FONDO.png');
+            background-repeat: repeat;
+            background-size: 150px; /* Tamaño del mosaico */
+            opacity: 0.18; /* Opacidad al 18% */
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Esto asegura que todo el contenido se lea por encima del fondo */
+        header, main, footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--lila-claro);
+            padding: 80px 20px 0px 20px;
+            border-bottom: 5px solid var(--lila-principal);
+            position: relative;
+        }
+
+        /* Posicionamiento del Logo en la esquina superior derecha */
+        .logo-img {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 140px;
+            height: auto;
+            display: block;
+        }
+
+        h1 {
+            color: var(--lila-principal);
+            font-size: 2.8rem;
+            margin: 50px 0 15px 0;
+            font-weight: 800;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .slogan {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--texto-oscuro);
+            margin-bottom: 35px;
+        }
+
+        /* Botón CTA Principal */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--cian-brillante);
+            color: var(--blanco);
+            padding: 16px 40px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(13, 200, 226, 0.4);
+            transition: all 0.3s ease;
+            margin-bottom: 40px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(13, 200, 226, 0.6);
+        }
+
+        /* Contenedor para Max y Molly DEBAJO del botón */
+        .hero-pets-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 20px;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .hero-pet {
+            width: 280px;
+            max-width: 45%;
+            height: auto;
+            display: block;
+        }
+
+        /* Secciones */
+        .section {
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            color: var(--lila-principal);
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+
+        .propuesta-valor {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Historias de Éxito */
+        .historia-box {
+            background-color: var(--gris-claro);
+            border-left: 6px solid var(--cian-brillante);
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .historia-flex {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        /* Imagen de Historias de Éxito Bruno y Sofia */
+        .historia-img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        .historia-texto em {
+            font-size: 1.15rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Contenedor del Formulario Incrustado */
+        .form-embed-container {
+            position: relative;
+            width: 100%;
+            max-width: 720px;
+            margin: 20px auto 0 auto;
+            border: 2px solid var(--lila-claro);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(187, 155, 241, 0.08);
+            background-color: #ffffff;
+        }
+
+        .form-embed-container iframe {
+            width: 100%;
+            display: block;
+        }
+
+        /* Sección Comunidad Inferior (Toby_2) */
+        .comunidad-section {
+            background-color: var(--lila-claro);
+            padding: 60px 20px 0px 20px; /* Quitamos el relleno inferior para que Toby toque el borde */
+            border-top: 2px solid var(--lila-claro);
+            overflow: hidden; /* Evita que la imagen rompa los márgenes de la pantalla */
+        }
+
+        .comunidad-flex {
+            display: flex;
+            align-items: flex-end; /* Alinea a Toby firmemente en la base del contenedor */
+            justify-content: center;
+            gap: 40px;
+            max-width: 1000px; /* Ampliamos el espacio de la sección */
+            margin: 0 auto;
+        }
+
+        .comunidad-img {
+            width: 320px; /* Escalamos el tamaño de Toby para darle mayor protagonismo */
+            max-width: 75%;
+            height: auto;
+            display: block;
+            margin-bottom: -5px; /* Pequeño ajuste para eliminar luces inferiores indeseadas */
+        }
+
+        .comunidad-texto {
+            text-align: left;
+            padding-bottom: 60px; /* Desplaza el texto hacia arriba dándole equilibrio con la foto */
+        }
+
+        .comunidad-texto h3 {
+            color: var(--lila-principal);
+            font-size: 2.2rem; /* Título ligeramente más grande e impactante */
+            margin: 0 0 10px 0;
+        }
+
+        .comunidad-texto p {
+            font-size: 1.2rem;
+            margin: 0 0 20px 0;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--texto-oscuro);
+            color: var(--blanco);
+            padding: 40px 20px;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: var(--cian-brillante);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .logo-img {
+                position: static;
+                display: block;
+                margin: 0 auto 20px auto;
+                max-width: 120px;
+            }
+            h1 { margin-top: 10px; font-size: 2.2rem; }
+            .hero-pets-container {
+                gap: 10px;
+            }
+            .historia-flex, .comunidad-flex {
+                flex-direction: column;
+                text-align: center;
+            }
+            .comunidad-texto {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <!-- Logo de la campaña en la esquina superior derecha -->
+        <img src="LOGO.png" alt="Logo Adopta y Cambia una Vida" class="logo-img">
+        
+        <h1>Adopta y Cambia una Vida</h1>
+        <p class="slogan">"Tu mejor amigo te está esperando. ¡Adopta, no compres!"</p>
+        
+        <!-- Botón de llamado a la acción principal -->
+        <a href="#postular" class="cta-button">¡Quiero postular para adoptar!</a>
+
+        <!-- Contenedor de Max y Molly ubicado estratégicamente DEBAJO del botón -->
+        <div class="hero-pets-container">
+            <img src="MAX.png" alt="Perrito Max" class="hero-pet">
+            <img src="MOLLY.png" alt="Gatita Molly" class="hero-pet">
+        </div>
+    </header>
+
+    <main>
+        <!-- PROPUESTA DE VALOR -->
+        <section class="section">
+            <h2>Nuestra Misión</h2>
+            <p class="propuesta-valor">
+                Facilitamos un proceso de adopción transparente, guiado y responsable para conectar a mascotas rescatadas con hogares que buscan un compañero de vida ideal en Lima. Te acompañamos en cada paso para asegurar el bienestar de tu futuro engreído.
+            </p>
+        </section>
+
+        <!-- PRUEBA SOCIAL / HISTORIAS DE ÉXITO -->
+        <section class="section" style="background-color: #fcf9ff; max-width: 100%;">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>Historias que Inspiran</h2>
+                <div class="historia-box">
+                    <div class="historia-flex">
+                        <!-- Imagen de Bruno y Sofía en Historias de Éxito -->
+                        <img src="BRUNO Y SOFIA.png" alt="Caso de éxito de adopción: Bruno y Sofía" class="historia-img">
+                        <div class="historia-texto">
+                            <p><em>"Bruno pasó meses esperando un hogar. Hoy tiene una familia que lo ama y cuida. La adopción responsable hace posibles estas historias."</em></p>
+                            <strong style="color: var(--lila-principal);">- Caso de éxito: Bruno y Sofía</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE CONVERSIÓN (FORMULARIO GOOGLE FORMS INTEGRADO) -->
+        <section id="postular" class="section">
+            <h2>Formulario de Postulación</h2>
+            <p style="margin-bottom: 25px;">Completa tus datos de forma segura para iniciar tu proceso de adopción.</p>
+            
+            <div class="form-embed-container">
+                <iframe src="https://forms.gle/TXXcPJ2Bte9CZ3SeA" 
+                        height="700" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0">
+                        Cargando formulario…
+                </iframe>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE COMUNIDAD INFERIOR -->
+        <section class="comunidad-section">
+            <div class="comunidad-flex">
+                <!-- Imagen de Toby_2 en la sección inferior de comunidad -->
+                <img src="TOBY.png" alt="Perrito Toby" class="comunidad-img">
+                <div class="comunidad-texto">
+                    <h3>Únete a Nuestra Comunidad</h3>
+                    <p>Visita nuestro perfil de Instagram:</p>
+                    <a href="https://www.instagram.com/cambiaunavida.pe" target="_blank" rel="noopener noreferrer" class="cta-button" style="padding: 10px 25px; font-size: 1rem; margin-bottom: 0;">@cambiaunavida.pe</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Adopta y Cambia una Vida.</p>
+    </footer>
+
+</body>
+</html>
